@@ -42,7 +42,7 @@ export async function POST(request: Request) {
       return Response.json(
         {
           success: false,
-          message: "Verification code has expired",
+          message: "Verification code has expired, Please Signup again",
         },
         { status: 400 }
       );

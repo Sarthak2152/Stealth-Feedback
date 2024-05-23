@@ -1,16 +1,12 @@
-import { signIn } from "@/auth";
+import { auth } from "@/auth";
 
-export default function Home() {
+export default async function HomePage() {
+  const session = await auth();
+  const user = session?.user;
   return (
     <>
-      {/* <h1>{process.env.AUTH_SECRET}</h1> */}
-      <form
-        action={async () => {
-          "use server";
-          await signIn("credentials");
-        }}>
-        <button>Credentials</button>
-      </form>
+      <h1>{JSON.stringify(session)}</h1>
+      <h1>{JSON.stringify(user)}</h1>
     </>
   );
 }

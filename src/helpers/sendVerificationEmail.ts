@@ -7,6 +7,7 @@ export default async function sendVerificationEmail(
   username: string,
   verificationCode: string
 ): Promise<ApiResponse> {
+  console.log("🚀 ~ verificationCode:", verificationCode);
   try {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
