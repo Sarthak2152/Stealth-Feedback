@@ -2,7 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import UserModel from "@/models/User";
 import { z } from "zod";
 import { fromZodError } from "zod-validation-error";
-
+export const dynamic = "force-dynamic";
 const usernameValidationSchema = z
   .string()
   .trim()

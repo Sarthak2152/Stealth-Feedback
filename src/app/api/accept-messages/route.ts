@@ -1,20 +1,22 @@
-import { auth } from "@/auth";
 import dbConnect from "@/lib/dbConnect";
+import { getUser } from "@/lib/getUser";
 import UserModel from "@/models/User";
 import { acceptMessageSchema } from "@/schema/acceptMessageSchema";
 import { fromZodError } from "zod-validation-error";
 
 // Toggle accept messages
 export async function POST(request: Request) {
-  const session = await auth();
-  const user = session?.user;
-  if (!session || !user) {
-    return Response.json(
-      { success: false, message: "You are not logged in" },
-      { status: 401 }
-    );
-  }
   try {
+    const user = await getUser();
+    if (!user) {
+      return Response.json(
+        {
+          success: false,
+          message: "You are not logged in!",
+        },
+        { status: 404 }
+      );
+    }
     await dbConnect();
     const body = await request.json();
     const parsedBody = acceptMessageSchema.safeParse(body);
@@ -57,15 +59,15 @@ export async function POST(request: Request) {
 
 // get status for user accepting messages
 export async function GET(request: Request) {
-  const session = await auth();
-  const user = session?.user;
-  if (!session || !user) {
-    return Response.json(
-      { success: false, message: "You are not logged in" },
-      { status: 401 }
-    );
-  }
   try {
+    const user = await getUser();
+    if (!user) {
+      return Response.json(
+        { success: false, message: "You are not logged in" },
+        { status: 401 }
+      );
+    }
+
     await dbConnect();
     const existingUser = await UserModel.findById(user._id);
     if (!existingUser) {

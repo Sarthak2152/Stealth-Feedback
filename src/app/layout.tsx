@@ -5,7 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar/Navbar";
 import { Toaster } from "@/components/ui/toaster";
-import { SessionProvider } from "next-auth/react";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,21 +20,19 @@ export default function RootLayout({
 }>) {
   return (
     <html suppressHydrationWarning={true} lang="en">
-      <SessionProvider>
-        <body
-          suppressHydrationWarning={true}
-          className={cn("min-h-screen relative", inter.className)}>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange>
-            <Navbar />
-            {children}
-            <Toaster />
-          </ThemeProvider>
-        </body>
-      </SessionProvider>
+      <body
+        suppressHydrationWarning={true}
+        className={cn("min-h-screen relative", inter.className)}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+          <Navbar />
+          {children}
+          <Toaster />
+        </ThemeProvider>
+      </body>
     </html>
   );
 }

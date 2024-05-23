@@ -2,7 +2,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
-import { signIn } from "next-auth/react";
 import {
   Form,
   FormControl,
@@ -23,7 +22,11 @@ import { loginSchema, loginSchemaType } from "@/schema/loginSchema";
 import Link from "next/link";
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
+import { toast } from "../ui/use-toast";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 const LoginForm = () => {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const form = useForm<loginSchemaType>({
     resolver: zodResolver(loginSchema),
@@ -33,13 +36,22 @@ const LoginForm = () => {
     console.log(data);
     try {
       setLoading(true);
-      const response = await signIn("credentials", {
-        username: data.username,
-        password: data.password,
-      });
+      const response = await axios.post("/api/sign-in", data);
       console.log("🚀 ~ onSubmit ~ response:", response);
-    } catch (error) {
+
+      toast({
+        title: "Logged in successfully",
+        description: "You were logged in!",
+      });
+      router.push("/dashboard");
+    } catch (error: any) {
       console.log("🚀 ~ onSubmit ~ error:", error);
+      toast({
+        title: "Logged in failed",
+        description: error?.response?.data?.message || "Something went wrong",
+        variant: "destructive",
+      });
+      form.reset();
     } finally {
       setLoading(false);
     }
