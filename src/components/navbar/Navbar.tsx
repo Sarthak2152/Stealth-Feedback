@@ -13,7 +13,7 @@ export const Navbar = async () => {
       <Link
         className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-3xl"
         href="/">
-        Stealth Chat
+        Stealth Feedback
       </Link>
       <div className="flex gap-3 items-center">
         <AuthButton>{!user ? <Login /> : <Logout />}</AuthButton>

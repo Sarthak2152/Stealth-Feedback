@@ -7,7 +7,7 @@ export const messageSchema = z.object({
     .max(20, "Username cannot be more than 20 characters")
     .regex(/^[a-zA-Z0-9_]+$/, "Username must not contain special characters"),
   content: z
-    .string()
+    .string({ required_error: "Content must be at least 10 characters." })
     .min(10, "Message must be at least 10 characters")
     .max(300, "Message should be at most 300 characters"),
 });

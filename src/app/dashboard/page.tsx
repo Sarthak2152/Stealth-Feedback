@@ -1,7 +1,11 @@
 import AcceptMessagesToggle from "@/components/dashboard/AcceptMessagesToggle";
 import CopyToClipboard from "@/components/dashboard/CopyToClipboard";
+import MessageList from "@/components/dashboard/MessageList";
+import MessagesFallback from "@/components/dashboard/MessagesFallback";
+import RevalidateButton from "@/components/dashboard/RevalidateButton";
 import { Separator } from "@/components/ui/separator";
 import { getUser } from "@/lib/getUser";
+
 import { redirect } from "next/navigation";
 import { Suspense } from "react";
 const dashboardPage = async () => {
@@ -21,7 +25,10 @@ const dashboardPage = async () => {
       </div>
       <Separator />
       {/* Messages Section */}
-      <Suspense></Suspense>
+      <RevalidateButton />
+      <Suspense fallback={<MessagesFallback />}>
+        <MessageList userId={user._id} />
+      </Suspense>
     </div>
   );
 };

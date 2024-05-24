@@ -3,7 +3,8 @@ import UserModel from "@/models/User";
 import { signupSchema } from "@/schema/signUpSchema";
 import { fromZodError } from "zod-validation-error";
 import { hash } from "bcryptjs";
-import sendVerificationEmail from "@/helpers/sendVerificationEmail";
+import { sendVerificationEmailNodemailer } from "@/helpers/sendVerificationEmailNodemailer";
+import { otpTemplate } from "@/helpers/VerificationNodemailer";
 export async function POST(req: Request) {
   await dbConnect();
   try {
@@ -54,10 +55,9 @@ export async function POST(req: Request) {
     }
 
     // sending verification mail
-    const emailResponse = await sendVerificationEmail(
+    const emailResponse = await sendVerificationEmailNodemailer(
       parsedBody.data.email,
-      parsedBody.data.username,
-      verifyCode
+      otpTemplate(verifyCode, parsedBody.data.username)
     );
     if (!emailResponse.success) {
       return Response.json(

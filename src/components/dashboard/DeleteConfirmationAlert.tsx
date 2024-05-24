@@ -15,6 +15,7 @@ import { Button } from "../ui/button";
 import { toast } from "../ui/use-toast";
 import { ApiResponse } from "@/types/apiResponse";
 import axios, { AxiosError } from "axios";
+import { revalidateCustomPath } from "@/lib/revalidatePath";
 
 type DeleteConfirmationAlertProps = {
   id: string;
@@ -22,9 +23,8 @@ type DeleteConfirmationAlertProps = {
 const DeleteConfirmationAlert = ({ id }: DeleteConfirmationAlertProps) => {
   const handleDeleteConfirm = async () => {
     try {
-      const response = await axios.delete<ApiResponse>(
-        `/api/delete-message/${id}`
-      );
+      const response = await axios.delete<ApiResponse>(`/api/message/${id}`);
+      await revalidateCustomPath("/dashboard");
       toast({
         title: response.data.message,
       });

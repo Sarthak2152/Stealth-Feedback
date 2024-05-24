@@ -1,19 +1,19 @@
 "use client";
 
 import dayjs from "dayjs";
-import { IMessage } from "@/models/Message";
 import { Card, CardHeader, CardTitle } from "@/components/ui/card";
 import DeleteConfirmationAlert from "./DeleteConfirmationAlert";
+import { Message } from "@/types/messages";
 
 type MessageItemProps = {
-  message: IMessage & { _id: string };
+  message: Message;
 };
 
 export function MessageItem({ message }: MessageItemProps) {
   return (
     <Card className="card-bordered">
       <CardHeader>
-        <div className="flex justify-between items-center">
+        <div className="flex gap-1 justify-between items-start">
           <CardTitle>{message.content}</CardTitle>
           <DeleteConfirmationAlert id={message._id} />
         </div>
