@@ -27,7 +27,7 @@ const CopyToClipboard = ({ username }: CopyToClipboardProps) => {
       <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
         Copy Your Unique Link
       </h4>
-      <div className="flex gap-4 items-center mt-4">
+      <div className="flex flex-col sm:flex-row gap-4 sm:items-center mt-4">
         <code className="leading-7 min-h-[2.3rem] font-mono bg-muted/80 py-1.5 flex-grow rounded-md px-4 ">
           {publicUrl}
         </code>

@@ -21,7 +21,7 @@ const CarouselHome = () => {
               <CardHeader>
                 <CardTitle>{message.title}</CardTitle>
               </CardHeader>
-              <CardContent className="flex flex-col md:flex-row items-start space-y-2 md:space-y-0 md:space-x-4">
+              <CardContent className="flex items-center flex-row gap-4">
                 <Mail className="flex-shrink-0" />
                 <div>
                   <p>{message.content}</p>

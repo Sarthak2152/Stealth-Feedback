@@ -11,7 +11,7 @@ export const Navbar = async () => {
   return (
     <nav className="w-full border-b flex justify-between items-center py-4 px-2 sm:px-6">
       <Link
-        className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-3xl"
+        className="scroll-m-20 text-xl sm:text-3xl font-extrabold tracking-tight lg:text-3xl"
         href="/">
         Stealth Feedback
       </Link>

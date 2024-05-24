@@ -1,7 +1,7 @@
 import CarouselHome from "@/components/home/CarouselHome";
 export default function Home() {
   return (
-    <div className="flex flex-col bg-muted/80 h-[calc(100vh-4.3rem-4.5rem)]">
+    <div className="flex flex-col bg-muted/20 min-h-[calc(100vh-4.3rem-4.5rem)]">
       {/* Main content */}
       <main className="flex-grow flex flex-col items-center justify-center px-4 md:px-24 py-12  ">
         <section className="text-center mb-8 md:mb-12">
