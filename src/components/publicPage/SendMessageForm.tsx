@@ -90,7 +90,7 @@ const SendMessageForm = ({ params }: { params: { username: string } }) => {
       });
       setCompletion(generateRandomMessages());
     }
-  }, [error]);
+  }, [error, setCompletion]);
 
   return (
     <div className="my-10 w-full">

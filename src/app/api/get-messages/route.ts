@@ -2,7 +2,7 @@ import dbConnect from "@/lib/dbConnect";
 import { getUser } from "@/lib/getUser";
 import MessageModel from "@/models/Message";
 import mongoose from "mongoose";
-
+export const dynamic = "force-dynamic";
 export async function GET(request: Request) {
   try {
     await dbConnect();
