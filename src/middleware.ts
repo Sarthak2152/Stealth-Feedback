@@ -7,12 +7,16 @@ import { deleteCookies } from "./lib/deleteCookies";
 export async function middleware(req: NextRequest) {
   try {
     const { nextUrl } = req;
+    // console.log("🚀 ~ middleware ~ nextUrl:", nextUrl);
     // const isLoggedIn = !!req.auth;
     // console.log("🚀 ~ auth ~ isLoggedIn:", isLoggedIn);
     const user = await getUser();
-    console.log("🚀 ~ middleware ~ user:", user?.email);
+    // console.log("🚀 ~ middleware ~ user:", user?.email);
     const isLoggedIn = !!user;
-    const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
+    const isPublicRoute = publicRoutes.some((url) =>
+      nextUrl.pathname.startsWith(url)
+    );
+    // console.log("🚀 ~ middleware ~ isPublicRoute:", isPublicRoute);
     const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
     if (isAuthRoute) {

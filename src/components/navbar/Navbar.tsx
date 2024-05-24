@@ -9,7 +9,7 @@ import { getUser } from "@/lib/getUser";
 export const Navbar = async () => {
   const user = await getUser();
   return (
-    <div className="w-full border-b flex justify-between items-center py-4 px-6">
+    <nav className="w-full border-b flex justify-between items-center py-4 px-2 sm:px-6">
       <Link
         className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-3xl"
         href="/">
@@ -19,6 +19,6 @@ export const Navbar = async () => {
         <AuthButton>{!user ? <Login /> : <Logout />}</AuthButton>
         <ToggleTheme />
       </div>
-    </div>
+    </nav>
   );
 };

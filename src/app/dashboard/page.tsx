@@ -1,5 +1,29 @@
-const dashboardPage = () => {
-  return <div>dashboardPage</div>;
+import AcceptMessagesToggle from "@/components/dashboard/AcceptMessagesToggle";
+import CopyToClipboard from "@/components/dashboard/CopyToClipboard";
+import { Separator } from "@/components/ui/separator";
+import { getUser } from "@/lib/getUser";
+import { redirect } from "next/navigation";
+import { Suspense } from "react";
+const dashboardPage = async () => {
+  const user = await getUser();
+  if (!user) redirect("/");
+
+  return (
+    <div className="flex min-h-screen w-full flex-col bg-muted/40 px-2 sm:px-6 py-8 ">
+      <h1 className="scroll-m-20 text-3xl font-extrabold tracking-tight lg:text-4xl">
+        User Dashboard
+      </h1>
+      {/* Copy to clipboard section */}
+      <CopyToClipboard username={user.username} />
+      {/* Accept messages toggle  */}
+      <div className="mb-4">
+        <AcceptMessagesToggle status={user.isAcceptingMessages} />
+      </div>
+      <Separator />
+      {/* Messages Section */}
+      <Suspense></Suspense>
+    </div>
+  );
 };
 
 export default dashboardPage;

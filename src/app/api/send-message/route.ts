@@ -40,6 +40,7 @@ export async function POST(request: Request) {
     const message = await MessageModel.create({
       content,
       createdAt: new Date(),
+      user: user._id,
     });
 
     user.messages.push(message._id);

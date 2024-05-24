@@ -17,6 +17,7 @@ const Logout = () => {
         variant: "default",
       });
       router.push("/");
+      router.refresh();
     } catch (error: any) {
       console.log("🚀 ~ signOutHandler ~ error:", error);
       toast({

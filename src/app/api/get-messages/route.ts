@@ -1,31 +1,28 @@
 import dbConnect from "@/lib/dbConnect";
 import { getUser } from "@/lib/getUser";
-import UserModel from "@/models/User";
+import MessageModel from "@/models/Message";
 import mongoose from "mongoose";
 
 export async function GET(request: Request) {
   try {
     await dbConnect();
     const user = await getUser();
+    console.log("🚀 ~ GET ~ user:", user);
     if (!user) {
       return Response.json(
         { success: false, message: "You are not logged in" },
         { status: 401 }
       );
     }
-    // converting string to Object id ( this is important while using aggregation pipelines)
     const userId = new mongoose.Types.ObjectId(user._id);
 
-    const userMessages = await UserModel.aggregate([
-      { $match: { _id: userId } },
-      { $unwind: "$messages" },
-      { $sort: { "messages.createdAt": -1 } },
-      { $group: { _id: "$_id", messages: { $push: "$messages" } } },
-    ]).exec();
+    const userMessages = await MessageModel.find({ user: userId }).sort({
+      createdAt: -1,
+    });
 
     if (!userMessages || userMessages.length === 0) {
       return Response.json(
-        { message: "User not found", success: false },
+        { message: "No message received yet! ", success: false },
         { status: 404 }
       );
     }
@@ -33,7 +30,7 @@ export async function GET(request: Request) {
       {
         success: true,
         message: "Successfully fetched messages",
-        messages: userMessages[0].messages,
+        messages: userMessages,
       },
       {
         status: 200,

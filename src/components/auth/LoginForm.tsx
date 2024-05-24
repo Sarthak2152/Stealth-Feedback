@@ -44,6 +44,7 @@ const LoginForm = () => {
         description: "You were logged in!",
       });
       router.push("/dashboard");
+      router.refresh();
     } catch (error: any) {
       console.log("🚀 ~ onSubmit ~ error:", error);
       toast({
