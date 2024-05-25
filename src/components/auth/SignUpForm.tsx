@@ -57,10 +57,10 @@ const SignUpForm = () => {
         const response: AxiosResponse<ApiResponse> = await axios.get(
           `/api/check-username-unique?username=${username}`
         );
-        console.log("🚀 ~ checkUsername ~ response:", response);
+        // console.log("🚀 ~ checkUsername ~ response:", response);
         setUsernameError(!response.data.success);
       } catch (error: any) {
-        console.log("🚀 ~ checkUsername ~ error:", error);
+        // console.log("🚀 ~ checkUsername ~ error:", error);
         setUsernameError(true);
         form.setError("username", {
           message: error?.response?.data?.message || "Try another username",
@@ -77,14 +77,14 @@ const SignUpForm = () => {
       setFormIsLoading(true);
       console.log(data);
       const response = await axios.post("/api/sign-up", data);
-      console.log("🚀 ~ onSubmit ~ response:", response);
+      // console.log("🚀 ~ onSubmit ~ response:", response);
       toast({
         title: "Sign Up Success",
         description: response.data.message || "Account created successfully",
       });
       router.push(`/verify/${username}`);
     } catch (error: any) {
-      console.log("🚀 ~ onSubmit ~ error:", error);
+      // console.log("🚀 ~ onSubmit ~ error:", error);
       form.reset();
       toast({
         variant: "destructive",

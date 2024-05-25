@@ -11,7 +11,7 @@ export async function GET(request: Request) {
   try {
     await dbConnect();
     const user = await getUser();
-    console.log("🚀 ~ GET ~ user:", user);
+    // console.log("🚀 ~ GET ~ user:", user);
     if (!user) {
       return Response.json(
         { success: false, message: "You are not logged in" },
@@ -41,7 +41,7 @@ export async function GET(request: Request) {
       }
     );
   } catch (error) {
-    console.log("🚀 ~ GET ~ error:", error);
+    // console.log("🚀 ~ GET ~ error:", error);
     return Response.json({
       success: false,
       message: "Something went wrong while fetching messages",
@@ -101,7 +101,7 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error) {
-    console.log("🚀 ~ POST ~ error:", error);
+    // console.log("🚀 ~ POST ~ error:", error);
     return Response.json(
       { message: "Something went wrong while sending message", success: false },
       { status: 500 }

@@ -37,7 +37,7 @@ const LoginForm = () => {
     try {
       setLoading(true);
       const response = await axios.post("/api/sign-in", data);
-      console.log("🚀 ~ onSubmit ~ response:", response);
+      // console.log("🚀 ~ onSubmit ~ response:", response);
 
       toast({
         title: "Logged in successfully",
@@ -46,7 +46,7 @@ const LoginForm = () => {
       router.push("/dashboard");
       router.refresh();
     } catch (error: any) {
-      console.log("🚀 ~ onSubmit ~ error:", error);
+      // console.log("🚀 ~ onSubmit ~ error:", error);
       toast({
         title: "Logged in failed",
         description: error?.response?.data?.message || "Something went wrong",

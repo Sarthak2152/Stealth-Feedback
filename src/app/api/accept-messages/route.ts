@@ -46,7 +46,7 @@ export async function POST(request: Request) {
       { status: 200 }
     );
   } catch (error: any) {
-    console.log("🚀 ~ error:", error);
+    // console.log("🚀 ~ error:", error);
     return Response.json(
       {
         success: false,
@@ -85,7 +85,7 @@ export async function GET(request: Request) {
       { status: 200 }
     );
   } catch (error: any) {
-    console.log("🚀 ~ GET ~ error:", error);
+    // console.log("🚀 ~ GET ~ error:", error);
     return Response.json(
       {
         success: false,

@@ -36,7 +36,7 @@ const SendMessageForm = ({ params }: { params: { username: string } }) => {
 
   // send message
   const onSubmit = async (data: messageSchemaType) => {
-    console.log("🚀 ~ onSubmit ~ data:", data);
+    // console.log("🚀 ~ onSubmit ~ data:", data);
     try {
       setLoading(true);
       const response = await axios.post("/api/message", data);
@@ -47,7 +47,7 @@ const SendMessageForm = ({ params }: { params: { username: string } }) => {
         description: response.data.message || "Message sent successfully",
       });
     } catch (error: any) {
-      console.log("🚀 ~ onSubmit ~ error:", error);
+      // console.log("🚀 ~ onSubmit ~ error:", error);
       form.reset();
       toast({
         variant: "destructive",
@@ -82,7 +82,7 @@ const SendMessageForm = ({ params }: { params: { username: string } }) => {
   };
   useEffect(() => {
     if (error) {
-      console.log("🚀 ~ fetchSuggestedMessages ~ error:", error);
+      // console.log("🚀 ~ fetchSuggestedMessages ~ error:", error);
       toast({
         title: "Credits expired :(",
         description: "Giving pregenerated response !",

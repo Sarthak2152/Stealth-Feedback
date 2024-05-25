@@ -19,7 +19,7 @@ const Logout = () => {
       router.push("/");
       router.refresh();
     } catch (error: any) {
-      console.log("🚀 ~ signOutHandler ~ error:", error);
+      // console.log("🚀 ~ signOutHandler ~ error:", error);
       toast({
         title: "Logged out failed",
         description: error?.response?.data?.message || "Please try again",

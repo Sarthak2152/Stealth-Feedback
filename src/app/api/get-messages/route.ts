@@ -7,7 +7,7 @@ export async function GET(request: Request) {
   try {
     await dbConnect();
     const user = await getUser();
-    console.log("🚀 ~ GET ~ user:", user);
+    // console.log("🚀 ~ GET ~ user:", user);
     if (!user) {
       return Response.json(
         { success: false, message: "You are not logged in" },
@@ -37,7 +37,7 @@ export async function GET(request: Request) {
       }
     );
   } catch (error) {
-    console.log("🚀 ~ GET ~ error:", error);
+    // console.log("🚀 ~ GET ~ error:", error);
     return Response.json({
       success: false,
       message: "Something went wrong while fetching messages",

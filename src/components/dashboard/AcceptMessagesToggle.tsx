@@ -29,7 +29,7 @@ const AcceptMessagesToggle = ({ status }: AcceptMessagesToggleProps) => {
         acceptMessage: !acceptMessage,
       });
       setValue("acceptMessage", !acceptMessage);
-      console.log("🚀 ~ handleChangeStatus ~ response:", response);
+      // console.log("🚀 ~ handleChangeStatus ~ response:", response);
       toast({
         title: response.data.message,
         variant: "default",

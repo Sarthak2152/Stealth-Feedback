@@ -59,7 +59,7 @@ const VerifyForm = ({ params }: VerifyFormProps) => {
       });
       router.push("/sign-in");
     } catch (error: any) {
-      console.log("🚀 ~ onSubmit ~ error:", error);
+      // console.log("🚀 ~ onSubmit ~ error:", error);
       toast({
         variant: "destructive",
         title: "Something went wrong",
