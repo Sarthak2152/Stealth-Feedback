@@ -3,9 +3,10 @@ import { MessageItem } from "./MessageItem";
 import { Message } from "@/types/messages";
 import MessageModel from "@/models/Message";
 import { getUser } from "@/lib/getUser";
-
+import dbConnect from "@/lib/dbConnect";
 const MessageList = async () => {
   try {
+    await dbConnect();
     const user = await getUser();
     if (!user) {
       return (
