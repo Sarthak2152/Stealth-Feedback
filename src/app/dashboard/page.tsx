@@ -10,7 +10,7 @@ import { redirect } from "next/navigation";
 import { Suspense } from "react";
 const dashboardPage = async () => {
   const user = await getUser();
-  if (!user) redirect("/");
+  if (!user) redirect("/sign-in");
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40 px-2 sm:px-6 py-8 ">
@@ -27,7 +27,7 @@ const dashboardPage = async () => {
       {/* Messages Section */}
       <RevalidateButton />
       <Suspense fallback={<MessagesFallback />}>
-        <MessageList userId={user._id} />
+        <MessageList />
       </Suspense>
     </div>
   );
