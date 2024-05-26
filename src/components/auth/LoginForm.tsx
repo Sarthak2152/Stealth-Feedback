@@ -57,6 +57,11 @@ const LoginForm = () => {
       setLoading(false);
     }
   };
+
+  function handleDemoLogin() {
+    form.setValue("username", "Demo_Account");
+    form.setValue("password", "thisIsDemoPassword");
+  }
   return (
     <div className="mx-auto w-full max-w-md ">
       <Card className="mx-auto max-w-sm">
@@ -108,6 +113,14 @@ const LoginForm = () => {
                 ) : (
                   "Login"
                 )}
+              </Button>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={handleDemoLogin}
+                disabled={loading}
+                className="w-full">
+                Add Demo Credentials
               </Button>
             </form>
           </Form>
