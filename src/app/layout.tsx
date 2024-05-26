@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar/Navbar";
 import { Toaster } from "@/components/ui/toaster";
+import dayjs from "dayjs";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -32,7 +33,8 @@ export default function RootLayout({
 
           {/* Footer */}
           <footer className="text-center sm:text-base text-sm border-t border-muted p-4 md:p-6">
-            © 2023 Stealth Feedback. All rights reserved.
+            © {dayjs(new Date()).get("year")} Stealth Feedback. All rights
+            reserved.
           </footer>
           <Toaster />
         </ThemeProvider>

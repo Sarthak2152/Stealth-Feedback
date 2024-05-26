@@ -3,9 +3,10 @@ import { MessageItem } from "./MessageItem";
 import { Message } from "@/types/messages";
 import MessageModel from "@/models/Message";
 import { getUser } from "@/lib/getUser";
-
+import dbConnect from "@/lib/dbConnect";
 const MessageList = async () => {
   try {
+    await dbConnect();
     const user = await getUser();
     if (!user) {
       return (
@@ -42,7 +43,7 @@ const MessageList = async () => {
       <div className="flex h-64 w-full flex-col bg-muted/40 px-2 sm:px-6 py-8 ">
         <div>
           <h3>Failed to fetch user messages</h3>
-          <p>{error?.message || "Please try again later"}</p>
+          <p> Please try again later</p>
         </div>
       </div>
     );
